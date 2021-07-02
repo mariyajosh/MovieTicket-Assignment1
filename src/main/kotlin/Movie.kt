@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.util.HashMap;
 class Movie {
     val AvailableMovies = arrayOf("Baahubali", "HarryPotter", "SpiderMan", "RRR");
+    val seatingType=arrayOf("Gold","Silver","Normal")
+    var selectedSeatingType=""
     var selectedMovie: String = ""
     var selectedTheatre: String = ""
     var selectedTime:String=""
@@ -17,7 +19,16 @@ class Movie {
 
     fun getTicket(TheatreInfo:Theatre){
         println("-------------Your MovieTicket----------------")
-        println("Movie Name:$selectedMovie \n Theatre Name:$selectedTheatre \n Movie Time:${TheatreInfo.Time} \nScreen Number:${TheatreInfo.screenNumber}\nTicketCost:${TheatreInfo.TicketCost}")
+        println("Movie Name:$selectedMovie \n Theatre Name:$selectedTheatre \n Movie Time:${TheatreInfo.Time} \nScreen Number:${TheatreInfo.screenNumber}\n Seating Type:${selectedSeatingType}")
+        if(selectedSeatingType.equals("Gold")){
+            println("Ticket cost:${TheatreInfo.TicketCost * 1.25}")
+        }
+        else if(selectedSeatingType.equals("Silver")){
+            println("Ticket cost:${TheatreInfo.TicketCost * 1.15}")
+        }
+        else  if(selectedSeatingType.equals("Normal")){
+            println("Ticket cost:${TheatreInfo.TicketCost * 1}")
+        }
         println()
         println()
         println("Enjoy your time!")
@@ -29,11 +40,11 @@ class Movie {
         println("List of Theatre where you can watch $selectedMovie")
         while (numbersIterator.hasNext()) {
             var i: Theatre = numbersIterator!!.next()
-            println("Theatre name: ${i!!.TheatreName}      Movie Time: ${i!!.Time}         Screen Number: ${i!!.screenNumber}  TicketCost: ${i!!.TicketCost}")
+            println("Theatre name: ${i!!.TheatreName}      Movie Time: ${i!!.Time}         Screen Number: ${i!!.screenNumber}  TicketCost: ${i!!.TicketCost} " )
         }
         println("select the theatre")
         selectedTheatre = sc.nextLine()
-        println("select the Time from Available Timings and Cost is also Diplayed")
+        println("select the Time from Available Timings and Cost is also Diplayed \n Note This ticket cost is for Normal type of seating")
         for(i in TheatreList.indices)
         {
             if(TheatreList.get(i).TheatreName.equals(selectedTheatre)){
@@ -41,6 +52,15 @@ class Movie {
             }
         }
         selectedTime=sc.nextLine()
+        //seating
+        println("select the seating type from below type of seating:")
+        for(i in seatingType){
+            println(i)
+        }
+        selectedSeatingType=sc.nextLine()
+
+
+
        for(i in TheatreList.indices)
        {
            if(TheatreList.get(i).TheatreName.equals(selectedTheatre) && TheatreList.get(i).Time.equals(selectedTime)){

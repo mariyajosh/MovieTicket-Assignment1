@@ -3,6 +3,7 @@ class Theatre {
     var Time:String=""
     var screenNumber:Int=0
     var TicketCost:Int=0
+    //var SeatingType:Seating=Seating()
     constructor(TheatreName:String,Time:String,screenNumber:Int,TicketCost:Int){
         this.Time=Time
         this.TheatreName=TheatreName
